@@ -52,7 +52,7 @@ Worker stops after successful execution
 | --- | --- |
 | Frontend | React, JavaScript, Vite, CSS |
 | Browser Automation | JavaScript, Safari Userscripts, DOM APIs |
-| Browser APIs | `setInterval`, `querySelector`, `localStorage` |
+| Browser APIs       | DOM APIs, `setInterval`, `querySelector`, `localStorage` |
 | Development | Git, GitHub |
 
 ## 📸 Demo
@@ -138,7 +138,7 @@ After starting the application:
 
 1. Open the WebPilot application in Safari.
 2. Open the Userscripts extension.
-3. Add `browser-worker/browser-worker.js` to Userscripts.
+3. Add the `browser-worker/browser-worker.js` script from this repository to Userscripts.
 4. Allow Userscripts to run on `localhost`.
 5. Create the following automation:
 
@@ -249,7 +249,7 @@ WebPilot was developed as a portfolio project to explore:
 - Browser-side automation
 - Client-side configuration persistence
 
-The project demonstrates how a frontend application can store automation configuration and communicate that configuration to a browser-side automation worker. V1 focuses on the client-side workflow and controlled browser automation; backend, database, and authentication features are future roadmap items and are not currently implemented.
+The project demonstrates how a frontend application can store automation configuration in browser storage and how a browser-side automation worker can read that configuration and execute the defined action.
 
 ## 👨‍💻 Author
 
