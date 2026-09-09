@@ -57,7 +57,7 @@ Worker stops after successful execution
 
 ## 📸 Demo
 
-WebPilot includes a controlled demo site for demonstrating the browser automation workflow.
+🚀 **Live Demo:** [WebPilot](https://mohammed-hamza-dev.github.io/WebPilot/)
 
 ### Demo Flow
 
