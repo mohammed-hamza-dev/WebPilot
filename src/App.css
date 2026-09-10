@@ -11,3 +11,172 @@
   padding: 40px 20px;
   text-align: center;
 }
+
+/* Headings */
+
+.app-container h1 {
+  margin-bottom: 8px;
+}
+
+.app-container h2 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.app-container h3 {
+  margin-bottom: 10px;
+}
+
+/* Form labels */
+
+.app-container label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Inputs and select */
+
+.app-container input,
+.app-container select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+/* Preview text */
+
+.app-container input + p {
+  text-align: left;
+  margin: 8px 0;
+}
+
+/* Buttons */
+
+.app-container button {
+  padding: 10px 18px;
+  margin-top: 15px;
+  border: 1px solid;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.app-container button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.app-container button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Saved automation cards */
+
+.app-container > div:not(.app-container) {
+  box-sizing: border-box;
+}
+
+.app-container h2 + div {
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* Automation details */
+
+.app-container h3 + p {
+  margin: 6px 0;
+}
+
+.app-container h3 + p + p {
+  margin: 6px 0;
+}
+
+.app-container h3 + p + p + p {
+  margin: 6px 0;
+}
+
+/* Delete button */
+
+.app-container h3 ~ button {
+  margin-top: 10px;
+}
+
+/* Demo section */
+
+.app-container > div:last-child {
+  margin-top: 40px;
+  padding: 25px;
+  border: 1px solid;
+  border-radius: 8px;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .app-container {
+    padding: 25px 15px;
+  }
+
+  .app-container input,
+  .app-container select {
+    font-size: 14px;
+  }
+
+  .app-container button {
+    width: 100%;
+  }
+}
+
+
+/* V2 Automation Generator */
+
+input[type="file"] {
+  width: 100%;
+  margin: 10px 0 20px;
+}
+
+img {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: monospace;
+  resize: vertical;
+}
+
+button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
