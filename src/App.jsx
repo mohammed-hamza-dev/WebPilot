@@ -33,25 +33,32 @@ function App() {
 
 
   const saveAutomation = () => {
-
-    if (name === '' || url === '' || selector === '') {
-      alert('Please fill in all fields')
-      return
-    }
-
-    const automation = {
-      name: name,
-      url: url,
-      selector: selector,
-      action: 'click'
-    }
-
-    setAutomations([...automations, automation])
-    console.log(automation)
+  if (name === '' || url === '' || selector === '') {
+    alert('Please fill in all fields')
+    return
   }
 
+  const automation = {
+    name: name,
+    url: url,
+    selector: selector,
+    action: 'click'
+  }
 
-  const generateAutomation = () => {
+  setAutomations([...automations, automation])
+
+  window.postMessage(
+    {
+      type: 'WEBPILOT_SAVE_AUTOMATION',
+      automation: automation
+    },
+    '*'
+  )
+
+  console.log(automation)
+}
+
+const generateAutomation = () => {
     if (target === '') {
       alert('Please enter a target element')
       return
