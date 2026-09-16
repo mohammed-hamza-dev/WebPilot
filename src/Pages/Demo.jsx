@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 function Demo() {
     const [confirmed, setConfirmed] = useState(false)
     const [showButton, setShowButton] = useState(false)
+    const [completed, setCompleted] = useState(false)
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -28,6 +29,16 @@ function Demo() {
                     Confirm Presence
                 </button>
             )}
+
+            {showButton && (
+                <button
+                    id="complete-task"
+                    onClick={() => setCompleted(true)}
+                >
+                    Complete Task
+                </button>
+            )}
+
         </div>
     )
 }

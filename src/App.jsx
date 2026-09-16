@@ -13,52 +13,114 @@ function App() {
   const [generatedAutomation, setGeneratedAutomation] = useState(null)
   const [generatedScript, setGeneratedScript] = useState('')
   const [copyMessage, setCopyMessage] = useState('')
+  const [editingId, setEditingId] = useState(null)
   const [automations, setAutomations] = useState(() => {
     const savedAutomations = localStorage.getItem('automations')
     return savedAutomations ? JSON.parse(savedAutomations) : []
   })
 
-  const deleteAutomation = (index) => {
-    const updatedAutomations = automations.filter(
-      (_, i) => i !== index
-    )
+  const deleteAutomation = async (id) => {
+    try {
+      await fetch(`http://localhost:8080/api/automations/${id}`, {
+        method: 'DELETE'
+      })
 
-    setAutomations(updatedAutomations)
+      setAutomations(
+        automations.filter((automation) => automation.id !== id)
+      )
+
+      window.postMessage(
+        {
+          type: 'WEBPILOT_DELETE_AUTOMATION',
+          id: id
+        },
+        '*'
+      )
+
+      console.log('Automation deleted:', id)
+    } catch (error) {
+      console.error('Delete error:', error)
+      alert('Could not delete automation')
+    }
   }
 
 
   useEffect(() => {
-    localStorage.setItem('automations', JSON.stringify(automations))
-  }, [automations])
+    fetch('http://localhost:8080/api/automations')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Automations from backend:', data)
+        setAutomations(data)
+      })
+      .catch((error) => {
+        console.error('Could not load automations:', error)
+      })
+  }, [])
 
 
-  const saveAutomation = () => {
-  if (name === '' || url === '' || selector === '') {
-    alert('Please fill in all fields')
-    return
+  const saveAutomation = async () => {
+    if (name === '' || url === '' || selector === '') {
+      alert('Please fill in all fields')
+      return
+    }
+
+    const automation = {
+      name: name,
+      url: url,
+      selector: selector.trim(),
+      action: 'click'
+    }
+
+    try {
+      const response = await fetch(
+        editingId
+          ? `http://localhost:8080/api/automations/${editingId}`
+          : 'http://localhost:8080/api/automations',
+        {
+          method: editingId ? 'PUT' : 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(automation)
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error(`Backend returned ${response.status}`)
+      }
+
+      const data = await response.json()
+
+      console.log('Backend response:', data)
+
+      if (editingId) {
+        setAutomations(
+          automations.map((item) =>
+            item.id === editingId ? data : item
+          )
+        )
+        setEditingId(null)
+      } else {
+        setAutomations([...automations, data])
+      }
+
+      window.postMessage(
+        {
+          type: 'WEBPILOT_SAVE_AUTOMATION',
+          automation: data
+        },
+        '*'
+      )
+
+      console.log('Automation saved:', automation)
+
+    } catch (error) {
+      console.error('Backend error:', error)
+      alert('Could not connect to WebPilot Backend')
+    }
   }
 
-  const automation = {
-    name: name,
-    url: url,
-    selector: selector,
-    action: 'click'
-  }
-
-  setAutomations([...automations, automation])
-
-  window.postMessage(
-    {
-      type: 'WEBPILOT_SAVE_AUTOMATION',
-      automation: automation
-    },
-    '*'
-  )
-
-  console.log(automation)
-}
-
-const generateAutomation = () => {
+  const generateAutomation = () => {
     if (target === '') {
       alert('Please enter a target element')
       return
@@ -249,7 +311,18 @@ const generateAutomation = () => {
           <p>Selector: {automation.selector}</p>
           <p>Action: {automation.action}</p>
 
-          <button onClick={() => deleteAutomation(index)}>
+          <button
+            onClick={() => {
+              setEditingId(automation.id)
+              setName(automation.name)
+              setUrl(automation.url)
+              setSelector(automation.selector)
+            }}
+          >
+            Edit
+          </button>
+
+          <button onClick={() => deleteAutomation(automation.id)}>
             Delete
           </button>
 
