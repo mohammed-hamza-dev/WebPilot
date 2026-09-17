@@ -37,7 +37,20 @@ const startWatching = (automation) => {
   const checkTarget = () => {
     console.log('👀 WebPilot watching:', automation.id)
 
-    const element = document.querySelector(automation.selector)
+    const elements = document.querySelectorAll(automation.selector)
+
+    const eligibleElements = Array.from(elements).filter(
+      (element) =>
+        element.offsetParent !== null &&
+        !element.disabled &&
+        !element.dataset.webpilotHandled
+    )
+
+    if (eligibleElements.length !== 1) {
+      return
+    }
+
+    const element = eligibleElements[0]
 
     if (
       element &&

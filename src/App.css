@@ -1,333 +1,997 @@
+/* =========================================================
+   WEBPILOT
+   KodNest-Inspired SaaS Design
+   Warm White + Black + Yellow
+========================================================= */
+
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
+
+:root {
+  --black: #171717;
+  --black-soft: #242424;
+  --yellow: #ffd400;
+  --yellow-dark: #e8bf00;
+
+  --background: #f7f6f2;
+  --surface: #ffffff;
+  --surface-soft: #f3f1eb;
+
+  --text: #171717;
+  --text-secondary: #66615a;
+  --text-muted: #918c84;
+
+  --border: #dedbd4;
+  --border-dark: #c9c5bc;
+
+  --success: #15803d;
+  --success-light: #eef8f1;
+
+  --danger: #dc3545;
+  --danger-light: #fff1f2;
+
+  --shadow-small: 0 3px 10px rgba(0, 0, 0, 0.06);
+  --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  background-color: var(--background);
+  color: var(--text);
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
 #root {
   min-height: 100vh;
 }
 
-/* Main container */
+/* =========================================================
+   MAIN APPLICATION
+========================================================= */
 
 .app-container {
+  position: relative;
+
   width: 100%;
-  max-width: 850px;
+  max-width: 1080px;
+
   margin: 0 auto;
-  padding: 50px 24px;
-  box-sizing: border-box;
+  padding: 38px 28px 80px;
+
+  color: var(--text);
+
   animation: pageEnter 0.5s ease;
+
+  /*
+    Very subtle grid inspired by the reference design.
+  */
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 124px 124px;
 }
 
-/* Headings */
+/* =========================================================
+   HEADER
+========================================================= */
 
-.app-container h1 {
-  margin: 0 0 10px;
-  font-size: 36px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  animation: fadeUp 0.5s ease;
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  padding: 18px 22px;
+  margin-bottom: 38px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-small);
+
+  animation: headerEnter 0.5s ease;
 }
 
-.app-container h2 {
-  margin-top: 50px;
-  margin-bottom: 22px;
-  font-size: 24px;
+/* Brand */
+
+.app-brand {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
 }
 
-.app-container h3 {
-  margin: 0 0 12px;
-  font-size: 19px;
+/* Logo */
+
+.app-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 50px;
+  height: 50px;
+
+  flex-shrink: 0;
+
+  background: var(--yellow);
+  color: var(--black);
+
+  border: 2px solid var(--black);
+  border-radius: 50%;
+
+  font-size: 21px;
+  font-weight: 850;
+
+  box-shadow: 3px 3px 0 var(--black);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-/* Form labels */
+.app-logo:hover {
+  transform: translate(-1px, -1px);
+
+  box-shadow: 5px 5px 0 var(--black);
+}
+
+/* Header title */
+
+.app-header h1 {
+  margin: 0 0 4px;
+
+  color: var(--black);
+
+  font-size: 27px;
+  line-height: 1.2;
+
+  font-weight: 800;
+
+  letter-spacing: -0.7px;
+}
+
+.app-header p {
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   DEMO BUTTON
+========================================================= */
+
+.demo-link {
+  position: relative;
+  z-index: 2;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 11px 18px;
+
+  background: var(--yellow);
+  color: var(--black);
+
+  border: 2px solid var(--black);
+  border-radius: 12px;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 750;
+
+  box-shadow: 4px 4px 0 var(--black);
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+.demo-link:hover {
+  transform: translate(2px, 2px);
+
+  box-shadow: 2px 2px 0 var(--black);
+
+  background: #ffda24;
+}
+
+.demo-link:active {
+  transform: translate(4px, 4px);
+
+  box-shadow: none;
+}
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.create-section,
+.saved-section {
+  width: 100%;
+
+  padding: 30px;
+
+  background: rgba(255, 255, 255, 0.97);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+
+  box-shadow: var(--shadow-small);
+
+  animation: cardEnter 0.5s ease both;
+}
+
+.create-section {
+  margin-bottom: 28px;
+}
+
+.saved-section {
+  margin-top: 0;
+}
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 28px;
+}
+
+.section-heading h2 {
+  margin: 0;
+
+  color: var(--black);
+
+  font-size: 23px;
+  line-height: 1.3;
+
+  font-weight: 800;
+
+  letter-spacing: -0.4px;
+}
+
+.section-heading h2::after {
+  display: none;
+}
+
+.section-heading p {
+  margin: 7px 0 0;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   LABELS
+========================================================= */
 
 .app-container label {
   display: block;
-  margin-top: 22px;
+
+  margin-top: 21px;
   margin-bottom: 8px;
-  font-weight: 600;
-  text-align: left;
+
+  color: var(--black);
+
+  font-size: 13px;
+  font-weight: 750;
 }
 
-/* Inputs and select */
+/* =========================================================
+   INPUTS
+========================================================= */
 
 .app-container input,
 .app-container select,
 .app-container textarea {
   width: 100%;
-  box-sizing: border-box;
-  padding: 12px 14px;
-  border: 1px solid;
-  border-radius: 8px;
-  font-size: 15px;
+
+  padding: 13px 15px;
+
+  background: #ffffff;
+  color: var(--text);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  font-size: 14px;
+
   outline: none;
+
+  box-shadow: none;
+
   transition:
-    transform 0.2s ease,
-    border-radius 0.2s ease,
-    box-shadow 0.2s ease;
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.app-container input::placeholder,
+.app-container textarea::placeholder {
+  color: var(--text-muted);
 }
 
 .app-container input:hover,
 .app-container select:hover,
 .app-container textarea:hover {
-  border-radius: 10px;
+  border-color: var(--border-dark);
 }
 
 .app-container input:focus,
 .app-container select:focus,
 .app-container textarea:focus {
-  transform: translateY(-1px);
-  box-shadow: 0 0 0 3px;
+  border-color: var(--black);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 212, 0, 0.28);
 }
 
-/* Preview text */
+.app-container input + p {
+  margin: 7px 2px 0;
 
-.app-container input+p {
-  text-align: left;
-  margin: 8px 0;
-  font-size: 14px;
+  color: var(--text-muted);
+
+  font-size: 12px;
+  line-height: 1.5;
 }
 
-/* Buttons */
+/* =========================================================
+   FILE INPUT
+========================================================= */
 
-.app-container button {
-  padding: 11px 20px;
-  margin-top: 15px;
-  border: 1px solid;
-  border-radius: 8px;
+input[type="file"] {
+  padding: 12px;
+
+  background: var(--surface-soft);
+
+  border: 1px dashed var(--border-dark);
+
+  border-radius: var(--radius-md);
+
+  color: var(--text-secondary);
+
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
+}
+
+input[type="file"]:hover {
+  background: #fffbea;
+
+  border-color: var(--yellow-dark);
+}
+
+input[type="file"]:focus {
+  box-shadow:
+    0 0 0 3px rgba(255, 212, 0, 0.25);
+}
+
+/* =========================================================
+   SCREENSHOT
+========================================================= */
+
+.app-container img {
+  display: block;
+
+  max-width: 100%;
+
+  margin-top: 15px;
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-small);
 
   transition:
-    transform 0.2s ease,
-    border-radius 0.2s ease,
-    box-shadow 0.2s ease;
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.app-container img:hover {
+  transform: translateY(-2px);
+
+  box-shadow: var(--shadow-medium);
+}
+
+.app-container select {
+  cursor: pointer;
+}
+
+/* =========================================================
+   PRIMARY BUTTONS
+========================================================= */
+
+.app-container button {
+  position: relative;
+
+  padding: 11px 19px;
+
+  margin-top: 18px;
+
+  background: var(--yellow);
+  color: var(--black);
+
+  border: 2px solid var(--black);
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 750;
+
+  box-shadow: 4px 4px 0 var(--black);
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
 }
 
 .app-container button:hover {
-  transform: translateY(-3px);
-  border-radius: 10px;
-  box-shadow: 0 5px 12px;
+  transform: translate(2px, 2px);
+
+  background: #ffda24;
+
+  box-shadow: 2px 2px 0 var(--black);
 }
 
 .app-container button:active {
-  transform: translateY(0);
+  transform: translate(4px, 4px);
+
   box-shadow: none;
 }
 
 .app-container button:focus-visible {
-  outline: 2px solid;
+  outline: 3px solid rgba(255, 212, 0, 0.35);
+
   outline-offset: 3px;
 }
 
-/* Saved automation cards */
+.app-container button + button {
+  margin-left: 10px;
+}
 
-.app-container h2+div {
-  box-sizing: border-box;
-  border: 1px solid;
-  border-radius: 12px;
-  padding: 22px;
-  margin-bottom: 16px;
-  text-align: left;
+/* =========================================================
+   HEADINGS
+========================================================= */
 
-  animation: cardEnter 0.4s ease both;
+.app-container h3 {
+  margin: 28px 0 13px;
+
+  color: var(--black);
+
+  font-size: 18px;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   USERSCRIPT TEXTAREA
+========================================================= */
+
+.app-container textarea {
+  min-height: 220px;
+
+  padding: 15px;
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  resize: vertical;
+
+  background: #181818;
+  color: #f5f5f5;
+
+  border-color: #181818;
+
+  border-radius: var(--radius-md);
+}
+
+.app-container textarea:focus {
+  background: #181818;
+
+  border-color: var(--yellow);
+
+  box-shadow:
+    0 0 0 3px rgba(255, 212, 0, 0.2);
+}
+
+.app-container textarea + button + p {
+  margin: 10px 0 0;
+
+  color: var(--success);
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   SAVED AUTOMATIONS
+========================================================= */
+
+.automation-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+.automation-card {
+  position: relative;
+
+  width: 100%;
+
+  padding: 24px;
+
+  background: #ffffff;
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: none;
+
+  overflow: hidden;
+
+  animation: cardEnter 0.45s ease both;
 
   transition:
     transform 0.2s ease,
-    border-radius 0.2s ease,
+    border-color 0.2s ease,
     box-shadow 0.2s ease;
 }
 
-.app-container h2+div:hover {
-  transform: translateY(-3px);
-  border-radius: 14px;
-  box-shadow: 0 7px 18px;
+.automation-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 5px;
+  height: 100%;
+
+  background: var(--yellow);
+
+  opacity: 0;
+
+  transition: opacity 0.2s ease;
 }
 
-/* Automation details */
+.automation-card:hover {
+  transform: translateY(-2px);
 
-.app-container h3+p,
-.app-container h3+p+p,
-.app-container h3+p+p+p {
-  margin: 7px 0;
-  font-size: 14px;
+  border-color: var(--border-dark);
+
+  box-shadow: var(--shadow-small);
+}
+
+.automation-card:hover::before {
+  opacity: 1;
+}
+
+/* Automation title */
+
+.automation-card h3 {
+  margin: 0 0 16px;
+
+  color: var(--black);
+
+  font-size: 18px;
+
+  font-weight: 800;
+}
+
+/* Automation information */
+
+.automation-card p {
+  margin: 8px 0;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+
+  line-height: 1.55;
+
   word-break: break-word;
 }
 
-/* Automation buttons */
+.automation-card p:nth-of-type(1),
+.automation-card p:nth-of-type(2) {
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
 
-.app-container h3~button {
+  font-size: 12px;
+
+  color: #625e57;
+}
+
+/* Action badge */
+
+.automation-card p:nth-of-type(3) {
+  display: block;
+
+  width: fit-content;
+
   margin-top: 14px;
-  margin-right: 8px;
+  margin-bottom: 4px;
+
+  padding: 6px 11px;
+
+  background: var(--success-light);
+
+  color: var(--success);
+
+  border: 1px solid #d5eadb;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+
+  font-weight: 750;
 }
 
-/* Demo section */
+/* =========================================================
+   EDIT BUTTON
+========================================================= */
 
-.app-container>div:last-child {
-  margin-top: 45px;
-  padding: 28px;
-  border: 1px solid;
-  border-radius: 12px;
-  text-align: center;
+.automation-card button {
+  margin-top: 12px;
+  margin-right: 7px;
 
-  animation: fadeUp 0.5s ease;
+  background: #ffffff;
 
-  transition:
-    transform 0.2s ease,
-    border-radius 0.2s ease;
+  color: var(--black);
+
+  border-color: var(--black);
+
+  box-shadow: 3px 3px 0 var(--black);
 }
 
-.app-container>div:last-child:hover {
-  transform: translateY(-2px);
-  border-radius: 14px;
+.automation-card button:first-of-type:hover {
+  background: var(--surface-soft);
+
+  border-color: var(--black);
+
+  color: var(--black);
+
+  box-shadow: 1px 1px 0 var(--black);
 }
 
-/* File input */
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
 
-input[type="file"] {
-  width: 100%;
-  box-sizing: border-box;
-  margin: 10px 0 20px;
-  padding: 10px;
-  border: 1px dashed;
-  border-radius: 8px;
+.automation-card button:last-of-type {
+  background: #ffffff;
 
-  transition:
-    border-radius 0.2s ease,
-    transform 0.2s ease;
+  color: var(--danger);
+
+  border-color: #e8aeb5;
+
+  box-shadow: 3px 3px 0 #e8aeb5;
 }
 
-input[type="file"]:hover {
-  transform: translateY(-1px);
-  border-radius: 10px;
+.automation-card button:last-of-type:hover {
+  background: var(--danger-light);
+
+  border-color: var(--danger);
+
+  color: #b42332;
+
+  box-shadow: 1px 1px 0 #b42332;
 }
 
-/* Images */
-
-img {
-  max-width: 100%;
-  border: 1px solid;
-  border-radius: 10px;
-  margin-top: 10px;
-
-  transition:
-    transform 0.3s ease,
-    border-radius 0.3s ease;
-}
-
-img:hover {
-  transform: scale(1.01);
-  border-radius: 12px;
-}
-
-/* Textarea */
-
-textarea {
-  min-height: 120px;
-  margin-top: 10px;
-  font-family: monospace;
-  resize: vertical;
-}
-
-/* General interactive animation */
-
-.app-container input,
-.app-container select,
-.app-container textarea,
-.app-container button {
-  animation: fadeIn 0.4s ease;
-}
-
-/* Page entrance */
+/* =========================================================
+   ANIMATIONS
+========================================================= */
 
 @keyframes pageEnter {
   from {
     opacity: 0;
+
     transform: translateY(10px);
   }
 
   to {
     opacity: 1;
+
     transform: translateY(0);
   }
 }
 
-/* Fade up */
-
-@keyframes fadeUp {
+@keyframes headerEnter {
   from {
     opacity: 0;
-    transform: translateY(15px);
+
+    transform: translateY(-10px);
   }
 
   to {
     opacity: 1;
+
     transform: translateY(0);
   }
 }
 
-/* Card entrance */
-
 @keyframes cardEnter {
   from {
     opacity: 0;
+
     transform: translateY(12px);
   }
 
   to {
     opacity: 1;
+
     transform: translateY(0);
   }
 }
 
-/* Fade in */
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
 
-  to {
-    opacity: 1;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
   }
 }
 
-/* Responsive */
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+  .app-container {
+    max-width: 760px;
+
+    padding: 30px 20px 60px;
+  }
+
+  .app-header {
+    padding: 20px;
+
+    border-radius: 18px;
+  }
+
+  .app-header h1 {
+    font-size: 25px;
+  }
+
+  .app-logo {
+    width: 47px;
+    height: 47px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 600px) {
   .app-container {
-    padding: 30px 16px;
+    padding: 18px 14px 50px;
+
+    background-size: 90px 90px;
   }
 
-  .app-container h1 {
-    font-size: 30px;
+  .app-header {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 20px;
+
+    padding: 20px;
+
+    margin-bottom: 28px;
+
+    border-radius: 18px;
   }
 
-  .app-container h2 {
-    margin-top: 38px;
+  .app-brand {
+    gap: 12px;
+  }
+
+  .app-logo {
+    width: 44px;
+    height: 44px;
+
+    font-size: 18px;
+  }
+
+  .app-header h1 {
     font-size: 22px;
+  }
+
+  .app-header p {
+    font-size: 12px;
+  }
+
+  .demo-link {
+    width: 100%;
+
+    border-radius: 12px;
+  }
+
+  .create-section,
+  .saved-section {
+    padding: 20px;
+
+    border-radius: 20px;
+  }
+
+  .section-heading {
+    margin-bottom: 22px;
+  }
+
+  .section-heading h2 {
+    font-size: 20px;
+  }
+
+  .app-container h3 {
+    font-size: 17px;
   }
 
   .app-container input,
   .app-container select,
   .app-container textarea {
     font-size: 14px;
+
+    border-radius: 13px;
   }
 
   .app-container button {
     width: 100%;
-  }
 
-  .app-container h3~button {
-    margin-right: 0;
-  }
-}
-
-/* Space between buttons */
-
-.app-container button+button {
-  margin-left: 10px;
-}
-
-@media (max-width: 600px) {
-  .app-container button+button {
     margin-left: 0;
+    margin-right: 0;
+
+    border-radius: 12px;
+  }
+
+  .app-container button + button {
+    margin-left: 0;
+
     margin-top: 10px;
+  }
+
+  .automation-card {
+    padding: 20px;
+
+    border-radius: 18px;
+  }
+
+  .automation-card button {
+    width: 100%;
+
+    margin-right: 0;
+
+    border-radius: 12px;
+  }
+
+  .app-container textarea {
+    min-height: 190px;
+
+    border-radius: 14px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+  .app-container {
+    padding: 14px 10px 40px;
+  }
+
+  .app-header {
+    padding: 18px;
+
+    border-radius: 17px;
+  }
+
+  .app-header h1 {
+    font-size: 20px;
+  }
+
+  .section-heading h2 {
+    font-size: 19px;
+  }
+
+  .automation-card {
+    padding: 17px;
+
+    border-radius: 16px;
   }
 }
